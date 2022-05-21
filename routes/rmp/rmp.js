@@ -12,12 +12,17 @@ router.use(fileUpload({
 const { obtieneMaterias } = require('./formulario');
 const { validaUsuario } = require('./validaUsuario');
 const { creaAlumno, creaProfesor } = require('./creaUsuarios');
+const { cargaExamen } = require('./cargarExamen');
+const { generaToken, validaToken } = require('./generaToken')
 
 //Metodos
 router.get('/obtieneMaterias', obtieneMaterias);
 router.post('/validaUsuario', validaUsuario);
 router.post('/creaProfesor', creaProfesor);
 router.post('/creaAlumno', creaAlumno);
+router.post('/cargaExamen', cargaExamen);
+router.post('/generaToken', generaToken);
+router.post('/validaToken', validaToken);
 
 
 

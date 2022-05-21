@@ -49,7 +49,7 @@ module.exports = {
                 } else {
                     response.replyCode = 200;
                     response.replyText = 'Usuario creado con exito';
-                    response.data = [data];
+                    response.data = [data.insertId];
                     res.status(200).send(response);
                 }
             })

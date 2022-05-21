@@ -13,7 +13,6 @@ module.exports = {
     validaUsuario: async (req, res)  => {
         let pass = req.body.PASSWORD
         let user = req.body.USUARIO
-        console.log(pass)
 
         let response = {
             replyCode: 200,
@@ -39,17 +38,24 @@ module.exports = {
                     response.data = undefined;
                     res.status(500).send(response);
                 } else {
-                    if(data[0].PASSWORD !== pass) {
+                    if(data.length === 0) {
                         response.replyCode = 500;
-                        response.replyText = `Usuario incorrecto`;
-                        response.data = [data];
-                        res.status(500).send(response);  
+                        response.replyText = 'Ocurrió algo inesperado';
+                        response.data = undefined;
+                        res.status(500).send(response);
                     } else {
-                        response.replyCode = 200;
-                        response.replyText = `Ok`;
-                        response.data = [data];
-                        res.status(200).send(response);
-                    } 
+                        if(data[0].PASSWORD !== pass) {
+                            response.replyCode = 500;
+                            response.replyText = `Usuario incorrecto`;
+                            response.data = [data];
+                            res.status(500).send(response);  
+                        } else {
+                            response.replyCode = 200;
+                            response.replyText = `Ok`;
+                            response.data = [data];
+                            res.status(200).send(response);
+                        } 
+                    }
                 }
             })
         }
