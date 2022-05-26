@@ -19,6 +19,7 @@ var examenSchema = new mongoose.Schema({
     materia: { type: String },
     profe: { type: String },
     dificultad: { type: String },
+    cobro: { type: Boolean },
     preguntas: [{
         pregunta: [{
             indice: { type: String },
@@ -67,10 +68,11 @@ module.exports = {
         let materia = req.body.idMateria
         let profe = req.body.profe
         let dificultad = req.body.dificultad
+        let cobro = req.body.cobro === "" ? false : req.body.cobro
         let formatoExamen = req.files.formatoExamen
         let preguntas = await ExcelAJSON(formatoExamen);
 
-        if(!f.definido(nombreExamen) || !f.definido(materia) || !f.definido(profe) || !f.definido(formatoExamen) || !f.definido(preguntas) || !f.definido(dificultad)) {
+        if(!f.definido(nombreExamen) || !f.definido(materia) || !f.definido(profe) || !f.definido(formatoExamen) || !f.definido(preguntas) || !f.definido(dificultad) || !f.definido(cobro)) {
             response.replyCode = 500;
             response.replyText = 'Error en la solicitud de datos';
             response.data = undefined;
@@ -81,6 +83,7 @@ module.exports = {
                 nombreExamen: nombreExamen,
                 materia: materia,
                 profe: profe,
+                cobro: cobro,
                 preguntas: preguntas
             }
 
