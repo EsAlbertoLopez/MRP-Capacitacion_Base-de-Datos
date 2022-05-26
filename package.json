@@ -25,6 +25,7 @@
     "express-http-proxy": "^1.6.3",
     "express-mongo-sanitize": "^2.2.0",
     "helmet": "^5.0.2",
+    "https": "^1.0.0",
     "ip": "^1.1.8",
     "model": "^6.0.1",
     "mongodb": "^4.5.0",
