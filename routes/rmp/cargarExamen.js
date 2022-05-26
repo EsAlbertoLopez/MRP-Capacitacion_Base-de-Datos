@@ -8,12 +8,10 @@
 var xlsx = require("xlsx");
 var express = require('express');
 var fs = require('fs')
-var router = express.Router();
-var dbMrp = require('../../conexiones/dbMigration').of('mrp');
 var f = require('../../funciones');
 
 var mongoose = require('mongoose');
-var url = 'mongodb://localhost/MRPDB';
+var url = 'mongodb://localhost/MRP';
 
 var examenSchema = new mongoose.Schema({
     id: { type: Number },
