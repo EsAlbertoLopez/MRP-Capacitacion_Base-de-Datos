@@ -84,6 +84,7 @@ module.exports = {
                 materia: materia,
                 profe: profe,
                 cobro: cobro,
+                dificultad: dificultad,
                 preguntas: preguntas
             }
 
