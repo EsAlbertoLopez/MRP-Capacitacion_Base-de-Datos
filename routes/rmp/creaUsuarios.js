@@ -68,7 +68,7 @@ module.exports = {
         let usuario = req.body.usuario
         let password = req.body.password
 
-        let query = `INSERT INTO ALUMNOS (NOMBRE_ALUMNOS, CORREO, USUARIO, PASSWORD)
+        let query = `INSERT INTO ALUMNOS (NOMBRE_ALUMNO, CORREO, USUARIO, PASSWORD)
                     VALUES ?`
 
         if(!f.definido(nombre) || !f.definido(correo) || !f.definido(usuario) || !f.definido(password)) {
