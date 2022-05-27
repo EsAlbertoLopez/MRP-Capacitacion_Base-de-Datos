@@ -3,9 +3,9 @@ var mysql = require('mysql');
 let mrp = {
   host     : 'localhost',
   port     : '3306',
-  user     : 'MRP',
+  user     : 'mrp',
   password : 'mrpdatabase',
-  database:  'mrp',
+  database:  'MRP',
   multipleStatements: true
 };
 
