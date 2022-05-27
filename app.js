@@ -21,9 +21,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize())
-app.use((req, res, next) => {
-    res.header('mrp-app-header', 'hfey20euf248yf294u2efhjo2hfoewwfph3120r492h43298htg4g8')
-})
+// app.use((req, res, next) => {
+//     res.header('mrp-app-header', 'hfey20euf248yf294u2efhjo2hfoewwfph3120r492h43298htg4g8')
+// })
 app.use('/mrp', mrp);
 
 module.exports = app;
