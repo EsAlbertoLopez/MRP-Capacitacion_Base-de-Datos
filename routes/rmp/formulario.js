@@ -4,8 +4,6 @@
 * @description Script para obtener las materias.
 */
 
-var express = require('express');
-var router = express.Router();
 var dbMrp = require('../../conexiones/dbMigration').of('mrp')
 
 

@@ -6,7 +6,6 @@
 */
 
 var xlsx = require("xlsx");
-var express = require('express');
 var fs = require('fs')
 var f = require('../../funciones');
 
@@ -16,6 +15,7 @@ var url = 'mongodb://localhost/MRP';
 var examenSchema = new mongoose.Schema({
     id: { type: Number },
     nombreExamen: { type: String },
+    idMateria: { type: Number },
     materia: { type: String },
     profe: { type: String },
     dificultad: { type: String },
@@ -65,14 +65,15 @@ module.exports = {
         }
 
         let nombreExamen = req.body.nombreExamen
-        let materia = req.body.idMateria
+        let idMateria = req.body.idMateria
+        let materia = req.body.materia
         let profe = req.body.profe
         let dificultad = req.body.dificultad
         let cobro = req.body.cobro === "" ? false : req.body.cobro
         let formatoExamen = req.files.formatoExamen
         let preguntas = await ExcelAJSON(formatoExamen);
 
-        if(!f.definido(nombreExamen) || !f.definido(materia) || !f.definido(profe) || !f.definido(formatoExamen) || !f.definido(preguntas) || !f.definido(dificultad) || !f.definido(cobro)) {
+        if(!f.definido(nombreExamen) || !f.definido(materia) || !f.definido(idMateria) || !f.definido(profe) || !f.definido(formatoExamen) || !f.definido(preguntas) || !f.definido(dificultad) || !f.definido(cobro)) {
             response.replyCode = 500;
             response.replyText = 'Error en la solicitud de datos';
             response.data = undefined;
@@ -81,6 +82,7 @@ module.exports = {
             let examen = {
                 id: parseInt(Date.now()).toString(),
                 nombreExamen: nombreExamen,
+                idMateria: idMateria,
                 materia: materia,
                 profe: profe,
                 cobro: cobro,

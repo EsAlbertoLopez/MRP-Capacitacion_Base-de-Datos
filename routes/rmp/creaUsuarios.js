@@ -5,8 +5,6 @@
 * @description Script para registrar profesores.
 */
 
-var express = require('express');
-var router = express.Router();
 var dbMrp = require('../../conexiones/dbMigration').of('mrp')
 var f = require('../../funciones')
 

@@ -4,8 +4,6 @@
 * @description Script para hacer el login a las plataformas.
 */
 
-var express = require('express');
-var router = express.Router();
 var dbMrp = require('../../conexiones/dbMigration').of('mrp')
 var f = require('./../../funciones')
 
