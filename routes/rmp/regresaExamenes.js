@@ -36,6 +36,7 @@ module.exports = {
         let expresion = '/(\b[letra])/'
         let regFinal = new RegExp('letra', 'gi')
         let regFinalFinal = expresion.replace(regFinal, letra)
+        console.log(regFinalFinal)
 
         if(!f.definido(letra)) {
             response.replyCode = 500;
