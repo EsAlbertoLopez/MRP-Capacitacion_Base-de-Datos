@@ -46,7 +46,7 @@ module.exports = {
                 let examenesResultado = await modelo.examen.find({"examen.materia":{$regex: re}}, {"_id": 0}, {"preguntas": 0}).lean().exec()
                 response.replyCode = 200;
                 response.replyText = 'Examen recuperado con exito';
-                response.data = [result];
+                response.data = [examenesResultado];
                 res.status(200).send(response);
             })
         }
