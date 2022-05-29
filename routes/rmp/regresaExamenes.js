@@ -9,13 +9,15 @@ var mongoose = require('mongoose');
 var url = 'mongodb://localhost/MRP';
 
 var examenSchema = new mongoose.Schema({
-    id: { type: Number },
-    nombreExamen: { type: String },
-    idMateria: { type: Number },
-    materia: { type: String },
-    profe: { type: String },
-    dificultad: { type: String },
-    cobro: { type: Boolean },
+    examen: {
+        id: { type: Number },
+        nombreExamen: { type: String },
+        idMateria: { type: Number },
+        materia: { type: String },
+        profe: { type: String },
+        dificultad: { type: String },
+        cobro: { type: Boolean }
+    }
 })
 
 const modelo = {
