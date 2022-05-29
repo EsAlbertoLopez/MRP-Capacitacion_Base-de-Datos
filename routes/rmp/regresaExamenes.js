@@ -25,7 +25,7 @@ module.exports = {
             res.status(500).send(response);
         } else {
             mongoose.connect(url, function(err, db) {
-                db.collection("EXAMENES").findOne({"examen.materia": /(\b[Rr])/}), function(err, result) {
+                db.collection("EXAMENES").findOne({"examen.materia": /\b[Rr]/}), function(err, result) {
                     if(err) {
                         console.log(err)
                         db.close();
