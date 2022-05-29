@@ -41,7 +41,7 @@ module.exports = {
             res.status(500).send(response);
         } else {
             mongoose.connect(url, async function(err, db) {
-                let examenesResultado = await modelo.examen.find({"examen.materia":{"regex":/(\b[Rr])/}}).lean().exec()
+                let examenesResultado = await modelo.examen.find({"materia":{"regex":/(\b[Rr])/}}).lean().exec()
                 console.log(examenesResultado)
             })
         }
