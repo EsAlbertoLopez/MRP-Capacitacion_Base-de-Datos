@@ -33,7 +33,7 @@ module.exports = {
         }
 
         let letra = req.params.letra.toString()
-        let regx = new RegExp(`/(\b[${letra}])/`)
+        let regx = new RegExp(`/(\\b[${letra}])/`)
 
         if(!f.definido(letra)) {
             response.replyCode = 500;
