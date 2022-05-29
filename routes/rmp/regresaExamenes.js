@@ -25,7 +25,7 @@ module.exports = {
             res.status(500).send(response);
         } else {
             mongoose.connect(url, function(err, db) {
-                db.collection("EXAMENES").find({"examen.materia": /(\b[Rr])/}).pretty()
+                db.collection("EXAMENES").find({"examen.materia": /(\b[Rr])/})
                 .then(result => {
                     db.close();
                     response.replyCode = 200;
