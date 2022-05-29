@@ -43,7 +43,7 @@ module.exports = {
                 console.log(examenesResultado)
                 examenesResultado = examenesResultado.map((obj) => ({
                     id: obj.id,
-                    nombreExamen: objnombreExamen,
+                    nombreExamen: obj.nombreExamen,
                     idMateria: obj.idMateria,
                     materia: obj.materia,
                     profe: obj.profe,
