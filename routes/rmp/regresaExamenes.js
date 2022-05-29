@@ -44,7 +44,10 @@ module.exports = {
         } else {
             mongoose.connect(url, async function(err, db) {
                 let examenesResultado = await modelo.examen.find({"examen.materia":{$regex: re}}).lean().exec()
-                console.log(examenesResultado)
+                response.replyCode = 200;
+                response.replyText = 'Examen recuperado con exito';
+                response.data = [result];
+                res.status(200).send(response);
             })
         }
     },
