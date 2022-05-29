@@ -12,30 +12,6 @@ var f = require('../../funciones');
 var mongoose = require('mongoose');
 var url = 'mongodb://localhost/MRP';
 
-var examenSchema = new mongoose.Schema({
-    id: { type: Number },
-    nombreExamen: { type: String },
-    idMateria: { type: Number },
-    materia: { type: String },
-    profe: { type: String },
-    dificultad: { type: String },
-    cobro: { type: Boolean },
-    preguntas: [{
-        pregunta: [{
-            indice: { type: String },
-            texto: { type: String },
-            a: { type: String },
-            b: { type: String },
-            c: { type: String },
-            d: { type: String },
-            e: { type: String },
-            f: { type: String },
-            respuesta: { type: String }, 
-            retroalimentacion: { type: String }
-        }]
-    }]
-})
-
 function ExcelAJSON(formatoExamen) {
     let fecha = Date.now();
     fs.writeFileSync(`./files/Examen${fecha}.xlsx`, formatoExamen.data)
