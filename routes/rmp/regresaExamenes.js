@@ -41,7 +41,7 @@ module.exports = {
             mongoose.connect(url, async function(err, db) {
                 let examenesResultado = await modelo.examen.find({"examen.materia": /(\b[Rr])/}).exec()
                 console.log(examenesResultado)
-                examenesResultado = examenesResultado.map((obj) => ({
+                examenesResultado.forEach((obj) => ({
                     id: obj.examen.materia,
                     nombreExamen: obj.nombreExamen,
                     idMateria: obj.idMateria,
@@ -49,7 +49,7 @@ module.exports = {
                     profe: obj.profe,
                     dificultad: obj.dificultad,
                     cobro: obj.cobro
-                }))
+                }));
                 console.log(examenesResultado)
             })
         }
