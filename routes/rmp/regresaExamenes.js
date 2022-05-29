@@ -33,6 +33,7 @@ module.exports = {
         }
 
         let letra = req.params.letra.toString()
+        var ExpReg = new RegExp("^" + letra + "$");
 
         if(!f.definido(letra)) {
             response.replyCode = 500;
@@ -41,7 +42,7 @@ module.exports = {
             res.status(500).send(response);
         } else {
             mongoose.connect(url, async function(err, db) {
-                let examenesResultado = await modelo.examen.find({"examen.materia":{$regex: '/^R/'}}).lean().exec()
+                let examenesResultado = await modelo.examen.find({"examen.materia":{$regex: ExpReg}}).lean().exec()
                 console.log(examenesResultado)
             })
         }
