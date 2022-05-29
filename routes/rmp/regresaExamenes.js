@@ -25,21 +25,21 @@ module.exports = {
             res.status(500).send(response);
         } else {
             mongoose.connect(url, function(err, db) {
-                db.collection("EXAMENES").find({"examen.materia": /(\b[Rr])/}, function(err, result) {
-                    if(err) {
-                        db.close();
-                        response.replyCode = 500;
-                        response.replyText = 'Error en la solicitud de datos';
-                        response.data = undefined;
-                        res.status(500).send(response);
-                    } else {
-                        db.close();
-                        response.replyCode = 200;
-                        response.replyText = 'Examen recuperado con exito';
-                        response.data = [result.pretty()];
-                        res.status(200).send(response);
-                    }
-                });
+                db.collection("EXAMENES").find({"examen.materia": /(\b[Rr])/}).pretty()
+                .then(result => {
+                    db.close();
+                    response.replyCode = 200;
+                    response.replyText = 'Examen recuperado con exito';
+                    response.data = [result];
+                    res.status(200).send(response);
+                })
+                .catch(err => {
+                    db.close();
+                    response.replyCode = 500;
+                    response.replyText = 'Error en la solicitud de datos';
+                    response.data = undefined;
+                    res.status(500).send(response);
+                })
             })
         }
     },
