@@ -32,7 +32,7 @@ module.exports = {
             data: []
         }
 
-        let letra = req.params.letra
+        let letra = req.params.letra.toString()
 
         if(!f.definido(letra)) {
             response.replyCode = 500;
