@@ -10,13 +10,13 @@ var url = 'mongodb://localhost/MRP';
 
 var examenSchema = new mongoose.Schema({
     examen: {
-        id: { type: Number },
-        nombreExamen: { type: String },
-        idMateria: { type: Number },
-        materia: { type: String },
-        profe: { type: String },
-        dificultad: { type: String },
-        cobro: { type: Boolean }
+        id: Number ,
+        nombreExamen:  String ,
+        idMateria: Number ,
+        materia: String,
+        profe: String,
+        dificultad: String,
+        cobro: Boolean
     }
 })
 
