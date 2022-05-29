@@ -17,18 +17,7 @@ var examenSchema = new mongoose.Schema({
     dificultad: { type: String },
     cobro: { type: Boolean },
     preguntas: [{
-        pregunta: [{
-            indice: { type: String },
-            texto: { type: String },
-            a: { type: String },
-            b: { type: String },
-            c: { type: String },
-            d: { type: String },
-            e: { type: String },
-            f: { type: String },
-            respuesta: { type: String }, 
-            retroalimentacion: { type: String }
-        }]
+        
     }]
 })
 
