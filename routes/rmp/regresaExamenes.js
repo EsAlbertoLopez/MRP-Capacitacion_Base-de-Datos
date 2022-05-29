@@ -32,6 +32,10 @@ var examenSchema = new mongoose.Schema({
     }]
 })
 
+const modelo = {
+    examen: mongoose.model('examenSchema', examenSchema ,'EXAMENES')
+}
+
 module.exports = {
     regresaExamenes: async (req, res) => {
         let response = {
@@ -49,21 +53,8 @@ module.exports = {
             res.status(500).send(response);
         } else {
             mongoose.connect(url, function(err, db) {
-                db.collection("EXAMENES").find({"examen.materia": /(\b[Rr])/}, {"_id": 1} , function(err, result) {
-                    if(err) {
-                        db.close();
-                        response.replyCode = 500;
-                        response.replyText = 'Error en la solicitud de datos';
-                        response.data = undefined;
-                        res.status(500).send(response);
-                    } else {
-                        db.close();
-                        response.replyCode = 200;
-                        response.replyText = 'Examen recuperado con exito';
-                        response.data = [result.json];
-                        res.status(200).send(response);
-                    }
-                });
+                let examenesResultado = await examen.find({"examen.materia": /(\b[Rr])/}).exec()
+                console.log(examenesResultado)
             })
         }
     },
