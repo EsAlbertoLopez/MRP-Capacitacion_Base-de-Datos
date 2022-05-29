@@ -25,7 +25,7 @@ module.exports = {
             res.status(500).send(response);
         } else {
             mongoose.connect(url, function(err, db) {
-                db.collection("EXAMENES").findOne({"examen.materia": /(\b[Rr])/}, function(err, result) {
+                db.collection("EXAMENES").findOne({"examen.materia": /(\b[Rr])/}).limit(50), function(err, result) {
                     if(err) {
                         db.close();
                         response.replyCode = 500;
@@ -39,7 +39,7 @@ module.exports = {
                         response.data = [result];
                         res.status(200).send(response);
                     }
-                });
+                };
             })
         }
     },
