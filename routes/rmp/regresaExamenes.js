@@ -25,7 +25,7 @@ module.exports = {
             res.status(500).send(response);
         } else {
             mongoose.connect(url, function(err, db) {
-                db.collection("EXAMENES").find({"examen.materia": /(\b[Rr])/}, function(err, result) {
+                db.collection("EXAMENES").find({"examen.materia": /(\b[Rr])/}, {"_id": 1} , function(err, result) {
                     if(err) {
                         db.close();
                         response.replyCode = 500;
@@ -34,7 +34,6 @@ module.exports = {
                         res.status(500).send(response);
                     } else {
                         db.close();
-                        console.log(result.bson)
                         response.replyCode = 200;
                         response.replyText = 'Examen recuperado con exito';
                         response.data = [result];
