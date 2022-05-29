@@ -9,7 +9,6 @@ var mongoose = require('mongoose');
 var url = 'mongodb://localhost/MRP';
 
 var examenSchema = new mongoose.Schema({
-    examen: {
         id: { type: Number },
         nombreExamen: { type: String },
         idMateria: { type: Number },
@@ -17,7 +16,6 @@ var examenSchema = new mongoose.Schema({
         profe: { type: String },
         dificultad: { type: String },
         cobro: { type: Boolean }
-    }
 })
 
 const modelo = {
@@ -41,7 +39,7 @@ module.exports = {
             res.status(500).send(response);
         } else {
             mongoose.connect(url, async function(err, db) {
-                let examenesResultado = await modelo.examen.find({materia:{"regex":/(\b[Rr])/}})
+                let examenesResultado = await modelo.examen.find({materia:{"regex":'.*'+/(\b[Rr])/+'.*'}})
                 console.log(examenesResultado)
             })
         }
