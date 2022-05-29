@@ -16,7 +16,8 @@ var examenSchema = new mongoose.Schema({
         materia: { type: String },
         profe: { type: String },
         dificultad: { type: String },
-        cobro: { type: Boolean }
+        cobro: { type: Boolean },
+        noPreguntas: { type: String }
     }
 })
 

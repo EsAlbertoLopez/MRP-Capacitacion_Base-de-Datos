@@ -63,7 +63,8 @@ module.exports = {
                 profe: profe,
                 cobro: cobro,
                 dificultad: dificultad,
-                preguntas: preguntas
+                preguntas: preguntas,
+                noPreguntas: preguntas.length
             }
 
             mongoose.connect(url, function(err, db) {
