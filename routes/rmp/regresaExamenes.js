@@ -32,7 +32,7 @@ module.exports = {
             data: []
         }
 
-        let letra = req.params.letra
+        let letra = req.params.letra.toString()
 
         if(!f.definido(letra)) {
             response.replyCode = 500;
@@ -41,7 +41,7 @@ module.exports = {
             res.status(500).send(response);
         } else {
             mongoose.connect(url, async function(err, db) {
-                let examenesResultado = await modelo.examen.find({"examen.materia":{$regex:/(\b[Rr])/}}).lean().exec()
+                let examenesResultado = await modelo.examen.find({"examen.materia":{$regex:"/(\b["+letra+"])/"}}).lean().exec()
                 console.log(examenesResultado)
             })
         }
