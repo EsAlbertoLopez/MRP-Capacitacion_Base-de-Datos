@@ -33,7 +33,7 @@ module.exports = {
         }
 
         let letra = req.params.letra.toString()
-        let regFinal = `/(\b[letra])/`.replace('letra', letra)
+        let regFinal = /(\b[letra])/.replace('letra', letra)
         console.log(regFinal)
 
         if(!f.definido(letra)) {
