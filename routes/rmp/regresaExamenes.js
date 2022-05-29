@@ -33,8 +33,9 @@ module.exports = {
         }
 
         let letra = req.params.letra.toString()
-        let regFinal = /(\b[letra])/.replace('letra', letra)
-        console.log(regFinal)
+        let expresion = '/(\b[letra])/'
+        let regFinal = new RegExp('letra', 'gi')
+        let regFinalFinal = expresion.replace(regFinal, letra)
 
         if(!f.definido(letra)) {
             response.replyCode = 500;
@@ -43,7 +44,7 @@ module.exports = {
             res.status(500).send(response);
         } else {
             mongoose.connect(url, async function(err, db) {
-                let examenesResultado = await modelo.examen.find({"examen.materia":{$regex: regFinal}}).lean().exec()
+                let examenesResultado = await modelo.examen.find({"examen.materia":{$regex: regFinalFinal}}).lean().exec()
                 console.log(examenesResultado)
             })
         }
