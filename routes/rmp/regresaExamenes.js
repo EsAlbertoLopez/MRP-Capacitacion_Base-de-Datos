@@ -33,8 +33,8 @@ module.exports = {
         }
 
         let letra = req.params.letra.toString()
-        let expresion = '/(\b[@])/'
-        let regFinal = new RegExp('@', 'gi')
+        let expresion = '/^letra/'
+        let regFinal = new RegExp('letra', 'gi')
         let regFinalFinal = expresion.replace(regFinal, letra)
         console.log(regFinalFinal)
 
