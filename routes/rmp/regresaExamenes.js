@@ -41,15 +41,16 @@ module.exports = {
             mongoose.connect(url, async function(err, db) {
                 let examenesResultado = await modelo.examen.find({"examen.materia": /(\b[Rr])/}).exec()
                 console.log(examenesResultado)
-                examenesResultado.forEach((obj) => ({
-                    id: obj.examen.materia,
-                    nombreExamen: obj.nombreExamen,
-                    idMateria: obj.idMateria,
-                    materia: obj.materia,
-                    profe: obj.profe,
-                    dificultad: obj.dificultad,
-                    cobro: obj.cobro
-                }));
+                examenesResultado.forEach(obj => {
+                    console.log(obj)
+                    // id: obj.examen.materia,
+                    // nombreExamen: obj.nombreExamen,
+                    // idMateria: obj.idMateria,
+                    // materia: obj.materia,
+                    // profe: obj.profe,
+                    // dificultad: obj.dificultad,
+                    // cobro: obj.cobro
+                });
                 console.log(examenesResultado)
             })
         }
