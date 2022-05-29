@@ -41,17 +41,6 @@ module.exports = {
             mongoose.connect(url, async function(err, db) {
                 let examenesResultado = await modelo.examen.find({"examen.materia": /(\b[Rr])/}, {"_id": 0, "examen.preguntas": 0}).exec()
                 console.log(examenesResultado)
-                examenesResultado.map(obj => {
-                    console.log(obj)
-                    id: obj.examen.materia,
-                    nombreExamen: obj.nombreExamen,
-                    idMateria: obj.idMateria,
-                    materia: obj.materia,
-                    profe: obj.profe,
-                    dificultad: obj.dificultad,
-                    cobro: obj.cobro
-                });
-                console.log(examenesResultado)
             })
         }
     },
