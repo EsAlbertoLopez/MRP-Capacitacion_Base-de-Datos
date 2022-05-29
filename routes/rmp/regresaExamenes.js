@@ -24,10 +24,23 @@ module.exports = {
             response.data = undefined;
             res.status(500).send(response);
         } else {
-            response.replyCode = 200;
-            response.replyText = 'Examen recuperado con exito';
-            response.data = undefined;
-            res.status(200).send(response);
+            mongoose.connect(url, function(err, db) {
+                db.collection("EXAMENES").findOne({"examen.materia": /^R/}, function(err, result) {
+                    if(err) {
+                        db.close();
+                        response.replyCode = 500;
+                        response.replyText = 'Error en la solicitud de datos';
+                        response.data = undefined;
+                        res.status(500).send(response);
+                    } else {
+                        db.close();
+                        response.replyCode = 200;
+                        response.replyText = 'Examen recuperado con exito';
+                        response.data = [result];
+                        res.status(200).send(response);
+                    }
+                });
+            })
         }
     },
 
