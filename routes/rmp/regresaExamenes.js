@@ -41,6 +41,7 @@ module.exports = {
         } else {
             mongoose.connect(url, async function(err, db) {
                 let examenesResultado = await modelo.examen.find({"examen.materia": /(\b[Rr])/}).exec()
+                console.log(examenesResultado.examen)
                 examenesResultado = examenesResultado.map(obj => ({
                     id: obj.examen.id,
                     nombreExamen: obj.examen.nombreExamen,
