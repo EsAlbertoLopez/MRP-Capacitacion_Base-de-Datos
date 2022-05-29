@@ -42,7 +42,7 @@ module.exports = {
                 let examenesResultado = await modelo.examen.find({"examen.materia": /(\b[Rr])/}).exec()
                 console.log(examenesResultado)
                 examenesResultado = examenesResultado.map((obj) => ({
-                    id: obj[1].id,
+                    id: obj._id,
                     nombreExamen: obj.nombreExamen,
                     idMateria: obj.idMateria,
                     materia: obj.materia,
