@@ -24,8 +24,8 @@ module.exports = {
             response.data = undefined;
             res.status(500).send(response);
         } else {
-             mongoose.connect(url, function(err, db) {
-                db.collection("EXAMENES").find({}, {"examen.materia": "Redes", "limit": 50,  _id: 0}), function(err, result) {
+            mongoose.connect(url, function(err, db) {
+                db.collection("EXAMENES").find({}, {"examen.materia": /(\b[Rr])/}, function(err, result) {
                     if(err) {
                         db.close();
                         response.replyCode = 500;
@@ -34,13 +34,12 @@ module.exports = {
                         res.status(500).send(response);
                     } else {
                         db.close();
-                        console.log(result.toArray())
                         response.replyCode = 200;
                         response.replyText = 'Examen recuperado con exito';
-                        response.data = [result.toArray()];
+                        response.data = [result];
                         res.status(200).send(response);
                     }
-                };
+                });
             })
         }
     },
