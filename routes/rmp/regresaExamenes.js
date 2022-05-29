@@ -34,7 +34,10 @@ module.exports = {
                         res.status(500).send(response);
                     } else {
                         db.close();
-                        console.log(result.findCursor[0])
+                        console.log(result.forEach(element => {
+                            console.log(element)   
+                        }))
+                        console.log(result)
                         response.replyCode = 200;
                         response.replyText = 'Examen recuperado con exito';
                         response.data = [result];
