@@ -27,6 +27,7 @@ module.exports = {
             mongoose.connect(url, function(err, db) {
                 db.collection("EXAMENES").findOne({"examen.materia": /(\b[Rr])/}), function(err, result) {
                     if(err) {
+                        console.log(err)
                         db.close();
                         response.replyCode = 500;
                         response.replyText = 'Error en la solicitud de datos';
