@@ -16,9 +16,7 @@ var examenSchema = new mongoose.Schema({
     profe: { type: String },
     dificultad: { type: String },
     cobro: { type: Boolean },
-    preguntas: [{
-        
-    }]
+    preguntas: [{}]
 })
 
 const modelo = {
@@ -43,6 +41,15 @@ module.exports = {
         } else {
             mongoose.connect(url, async function(err, db) {
                 let examenesResultado = await modelo.examen.find({"examen.materia": /(\b[Rr])/}).exec()
+                examenesResultado = examenesResultado.map(obj => ({
+                    id: obj.examen.id,
+                    nombreExamen: obj.examen.nombreExamen,
+                    idMateria: obj.examen.idMateria,
+                    materia: obj.examen.materia,
+                    profe: obj.examen.profe,
+                    dificultad: obj.examen.dificultad,
+                    cobro: obj.examen.cobro
+                }))
                 console.log(examenesResultado)
             })
         }
