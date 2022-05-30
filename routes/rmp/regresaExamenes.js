@@ -12,6 +12,7 @@ var examenSchema = new mongoose.Schema({
     examen: {
         id: { type: Number },
         nombreExamen: { type: String },
+        descripcion: { type: String },
         idMateria: { type: Number },
         materia: { type: String },
         profe: { type: String },

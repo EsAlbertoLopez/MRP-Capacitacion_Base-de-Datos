@@ -41,6 +41,7 @@ module.exports = {
         }
 
         let nombreExamen = req.body.nombreExamen
+        let descripcion = req.body.descripcion
         let idMateria = req.body.idMateria
         let materia = req.body.materia
         let profe = req.body.profe
@@ -49,7 +50,7 @@ module.exports = {
         let formatoExamen = req.files.formatoExamen
         let preguntas = await ExcelAJSON(formatoExamen);
 
-        if(!f.definido(nombreExamen) || !f.definido(materia) || !f.definido(idMateria) || !f.definido(profe) || !f.definido(formatoExamen) || !f.definido(preguntas) || !f.definido(dificultad) || !f.definido(cobro)) {
+        if(!f.definido(nombreExamen) || !f.definido(materia) || !f.definido(idMateria) || !f.definido(profe) || !f.definido(formatoExamen) || !f.definido(preguntas) || !f.definido(dificultad) || !f.definido(cobro) || !f.definido(descripcion)) {
             response.replyCode = 500;
             response.replyText = 'Error en la solicitud de datos';
             response.data = undefined;
@@ -58,6 +59,7 @@ module.exports = {
             let examen = {
                 id: parseInt(Date.now()).toString(),
                 nombreExamen: nombreExamen,
+                description: descripcion,
                 idMateria: idMateria,
                 materia: materia,
                 profe: profe,
