@@ -36,7 +36,6 @@ module.exports = {
 
         let letra = req.params.letra.toString()
         let re = new RegExp(`^${letra}`);
-        console.log(re)
 
         if(!f.definido(letra)) {
             response.replyCode = 500;
