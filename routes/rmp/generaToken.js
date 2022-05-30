@@ -12,8 +12,8 @@ var nodemailer = require('nodemailer')
 var transporter = nodemailer.createTransport({
     service: "hotmail",
     auth: {
-        user: "guilleaua@gmail.com",
-        pass: "@Guillermo2602"
+        user: "mrppruebaservidor@gmail.com",
+        pass: "@mrp052022"
     }
 });
 
@@ -58,7 +58,7 @@ module.exports = {
                             res.status(500).send(response);
                         } else {
                             var mailOptions = {
-                                from: 'guilleaua@gmail.com',
+                                from: 'mrppruebaservidor@gmail.com',
                                 to: correo,
                                 subject: 'Token de acceso',
                                 text: `Hola, tu código de acceso es ${token}`
