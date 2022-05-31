@@ -32,6 +32,15 @@ function ExcelAJSON(formatoExamen) {
     })
 }
 
+let diccionarioOpciones = {
+    "A": 0,
+    "B": 1,
+    "C": 2,
+    "D": 3,
+    "E": 4,
+    "F": 5
+}
+
 module.exports = {
     cargaExamen: async (req, res) => {
         let response = {
@@ -49,6 +58,22 @@ module.exports = {
         let cobro = req.body.cobro === "" ? false : req.body.cobro
         let formatoExamen = req.files.formatoExamen
         let preguntas = await ExcelAJSON(formatoExamen);
+        preguntas = preguntas.map(p => ({
+            NUMERO: p.NUMERO,
+            PREGUNTA: p.PREGUNTA,
+            OPCIONES: [
+                p.A,
+                p.B,
+                p.C,
+                p.D,
+                p.E,
+                p.F
+            ],
+            RESPUESTALETRA: p.RESPUESTA,
+            RESPUESTAINDICE: diccionarioOpciones[p.RESPUESTA],
+            RETRO: p.RETRO
+        }))
+        console.log(preguntas)
 
         if(!f.definido(nombreExamen) || !f.definido(materia) || !f.definido(idMateria) || !f.definido(profe) || !f.definido(formatoExamen) || !f.definido(preguntas) || !f.definido(dificultad) || !f.definido(cobro) || !f.definido(descripcion)) {
             response.replyCode = 500;
