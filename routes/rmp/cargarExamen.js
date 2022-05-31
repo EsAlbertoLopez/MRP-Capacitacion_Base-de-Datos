@@ -97,9 +97,9 @@ module.exports = {
                 preguntas: preguntas
             }
 
-            // mongoose.connect(url, function(err, db) {
-            //     db.collection('EXAMENES').insertOne({examen});
-            // })
+            mongoose.connect(url, function(err, db) {
+                db.collection('EXAMENES').insertOne({examen});
+            })
 
             response.replyCode = 200;
             response.replyText = 'Examen creado con exito';
