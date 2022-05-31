@@ -73,7 +73,10 @@ module.exports = {
             RESPUESTAINDICE: diccionarioOpciones[p.RESPUESTA],
             RETRO: p.RETRO
         }))
-        console.log(preguntas)
+
+        for (var i = 0; i < preguntas.length; i++) {
+            preguntas[i].OPCIONES = preguntas[i].OPCIONES.filter(el => el != null)
+        } 
 
         if(!f.definido(nombreExamen) || !f.definido(materia) || !f.definido(idMateria) || !f.definido(profe) || !f.definido(formatoExamen) || !f.definido(preguntas) || !f.definido(dificultad) || !f.definido(cobro) || !f.definido(descripcion)) {
             response.replyCode = 500;
@@ -94,9 +97,9 @@ module.exports = {
                 preguntas: preguntas
             }
 
-            mongoose.connect(url, function(err, db) {
-                db.collection('EXAMENES').insertOne({examen});
-            })
+            // mongoose.connect(url, function(err, db) {
+            //     db.collection('EXAMENES').insertOne({examen});
+            // })
 
             response.replyCode = 200;
             response.replyText = 'Examen creado con exito';
