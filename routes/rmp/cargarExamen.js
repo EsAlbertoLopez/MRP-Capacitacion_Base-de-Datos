@@ -55,7 +55,7 @@ module.exports = {
         let materia = req.body.materia
         let profe = req.body.profe
         let dificultad = req.body.dificultad
-        let cobro = req.body.cobro === "" ? false : req.body.cobro
+        let cobro = parseInt(req.body.cobro) === 1 ? true : false
         let formatoExamen = req.files.formatoExamen
         let preguntas = await ExcelAJSON(formatoExamen);
         preguntas = preguntas.map(p => ({
@@ -78,6 +78,7 @@ module.exports = {
             preguntas[i].OPCIONES = preguntas[i].OPCIONES.filter(el => el != null)
         } 
 
+
         if(!f.definido(nombreExamen) || !f.definido(materia) || !f.definido(idMateria) || !f.definido(profe) || !f.definido(formatoExamen) || !f.definido(preguntas) || !f.definido(dificultad) || !f.definido(cobro) || !f.definido(descripcion)) {
             response.replyCode = 500;
             response.replyText = 'Error en la solicitud de datos';
@@ -95,11 +96,11 @@ module.exports = {
                 dificultad: dificultad,
                 noPreguntas: preguntas.length,
                 preguntas: preguntas
-            }
+            }   
 
-            mongoose.connect(url, function(err, db) {
-                db.collection('EXAMENES').insertOne({examen});
-            })
+            // mongoose.connect(url, function(err, db) {
+            //     db.collection('EXAMENES').insertOne({examen});
+            // })
 
             response.replyCode = 200;
             response.replyText = 'Examen creado con exito';
