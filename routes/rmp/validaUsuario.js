@@ -48,12 +48,12 @@ module.exports = {
                         if(data[0].PASSWORD !== pass) {
                             response.replyCode = 500;
                             response.replyText = `Usuario incorrecto`;
-                            response.data = [data];
+                            response.data = [];
                             res.status(500).send(response);  
                         } else {
                             response.replyCode = 200;
                             response.replyText = `Ok`;
-                            response.data = [data];
+                            response.data = [];
                             res.status(200).send(response);
                         } 
                     }
@@ -101,12 +101,12 @@ module.exports = {
                         if(data[0].PASSWORD !== pass) {
                             response.replyCode = 500;
                             response.replyText = `Usuario incorrecto`;
-                            response.data = [data];
+                            response.data = [];
                             res.status(500).send(response);  
                         } else {
                             response.replyCode = 200;
                             response.replyText = `Ok`;
-                            response.data = [data];
+                            response.data = [];
                             res.status(200).send(response);
                         } 
                     }
