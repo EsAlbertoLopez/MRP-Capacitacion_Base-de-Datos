@@ -64,7 +64,7 @@ module.exports = {
 
     validaUsuarioAlumno: async (req, res)  => {
         let pass = req.body.password
-        let user = req.body.correo
+        let correo = req.body.correo
 
         let response = {
             replyCode: 200,
