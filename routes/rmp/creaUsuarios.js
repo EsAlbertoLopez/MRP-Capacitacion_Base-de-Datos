@@ -5,6 +5,7 @@
 * @description Script para registrar profesores.
 */
 
+var md5 = require('blueimp-md5')
 var dbMrp = require('../../conexiones/dbMigration').of('mrp')
 var f = require('../../funciones')
 
@@ -18,13 +19,15 @@ module.exports = {
 
         let nombre = req.body.nombre
         let correo = req.body.correo
-        let usuario = req.body.usuario
         let password = req.body.password
 
-        let query = `INSERT INTO PROFESORES (NOMBRE_PROFESOR, CORREO, USUARIO, PASSWORD)
+        password = md5(password, 'KEYMRPSUPERSECRETA');  
+
+        let query = `INSERT INTO PROFESORES (NOMBRE_PROFESOR, CORREO, PASSWORD)
                     VALUES ?`
 
-        if(!f.definido(nombre) || !f.definido(correo) || !f.definido(usuario) || !f.definido(password)) {
+
+        if(!f.definido(nombre) || !f.definido(correo) || !f.definido(password)) {
             response.replyCode = 500;
             response.replyText = 'Error en la solicitud de datos';
             response.data = undefined;
@@ -34,7 +37,6 @@ module.exports = {
             inserta.push([
                 nombre,
                 correo,
-                usuario,
                 password
             ])
             dbMrp.query(query, [inserta], async (err, data) => {
@@ -63,13 +65,14 @@ module.exports = {
 
         let nombre = req.body.nombre
         let correo = req.body.correo
-        let usuario = req.body.usuario
         let password = req.body.password
 
-        let query = `INSERT INTO ALUMNOS (NOMBRE_ALUMNO, CORREO, USUARIO, PASSWORD)
+        password = md5(password, 'KEYMRPSUPERSECRETA');  
+
+        let query = `INSERT INTO ALUMNOS (NOMBRE_ALUMNO, CORREO, PASSWORD)
                     VALUES ?`
 
-        if(!f.definido(nombre) || !f.definido(correo) || !f.definido(usuario) || !f.definido(password)) {
+        if(!f.definido(nombre) || !f.definido(correo) || !f.definido(password)) {
             response.replyCode = 500;
             response.replyText = 'Error en la solicitud de datos';
             response.data = undefined;
@@ -79,7 +82,6 @@ module.exports = {
             inserta.push([
                 nombre,
                 correo,
-                usuario,
                 password
             ])
             dbMrp.query(query, [inserta], async (err, data) => {
