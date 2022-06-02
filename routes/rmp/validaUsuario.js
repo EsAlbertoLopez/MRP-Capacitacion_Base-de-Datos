@@ -53,7 +53,7 @@ module.exports = {
                         } else {
                             response.replyCode = 200;
                             response.replyText = `Ok`;
-                            response.data = [data.NO_PROFESOR, data.NOMBRE_PROFESOR];
+                            response.data = [data[0].NO_PROFESOR, data[0].NOMBRE_PROFESOR];
                             res.status(200).send(response);
                         } 
                     }
@@ -106,7 +106,7 @@ module.exports = {
                         } else {
                             response.replyCode = 200;
                             response.replyText = `Ok`;
-                            response.data = [data.NO_ALUMNO, data.NOMBRE_ALUMNO];
+                            response.data = [data[0].NO_ALUMNO, data[0].NOMBRE_ALUMNO];
                             res.status(200).send(response);
                         } 
                     }
