@@ -10,7 +10,7 @@ router.use(fileUpload({
 
 //Constantes de metodos
 const { obtieneMaterias } = require('./formulario');
-const { validaUsuario } = require('./validaUsuario');
+const { validaUsuarioProfesor, validaUsuarioAlumno } = require('./validaUsuario');
 const { creaAlumno, creaProfesor } = require('./creaUsuarios');
 const { cargaExamen } = require('./cargarExamen');
 const { generaToken, validaToken } = require('./generaToken');
@@ -20,7 +20,8 @@ const { regresaExamenes, regresaExamen } = require('./regresaExamenes');
 router.get('/obtieneMaterias', obtieneMaterias);
 router.get('/regresaExamenes/:letra', regresaExamenes)
 router.get('/regresaExamen/:idExamen', regresaExamen);
-router.post('/validaUsuario', validaUsuario);
+router.post('/validaUsuarioProfesor', validaUsuarioProfesor);
+router.post('/validaUsuarioAlumno', validaUsuarioAlumno);
 router.post('/creaProfesor', creaProfesor);
 router.post('/creaAlumno', creaAlumno);
 router.post('/cargaExamen', cargaExamen);
