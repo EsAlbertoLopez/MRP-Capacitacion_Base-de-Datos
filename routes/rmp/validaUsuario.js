@@ -21,7 +21,7 @@ module.exports = {
 
         pass = md5(pass, 'KEYMRPSUPERSECRETA'); 
 
-        let query = `SELECT PASSWORD, ID_PROFESOR, NOMBRE_PROFESOR
+        let query = `SELECT PASSWORD, NO_PROFESOR, NOMBRE_PROFESOR
                     FROM PROFESORES
                     WHERE CORREO = "${correo}"`
 
@@ -53,7 +53,7 @@ module.exports = {
                         } else {
                             response.replyCode = 200;
                             response.replyText = `Ok`;
-                            response.data = [data.ID_PROFESOR, data.NOMBRE_PROFESOR];
+                            response.data = [data.NO_PROFESOR, data.NOMBRE_PROFESOR];
                             res.status(200).send(response);
                         } 
                     }
@@ -74,7 +74,7 @@ module.exports = {
 
         pass = md5(pass, 'KEYMRPSUPERSECRETA'); 
 
-        let query = `SELECT PASSWORD, ID_ALUMNO, NOMBRE_ALUMNO
+        let query = `SELECT PASSWORD, NO_ALUMNO, NOMBRE_ALUMNO
                     FROM ALUMNOS
                     WHERE CORREO = "${correo}"`
 
@@ -106,7 +106,7 @@ module.exports = {
                         } else {
                             response.replyCode = 200;
                             response.replyText = `Ok`;
-                            response.data = [data.ID_ALUMNO, data.NOMBRE_ALUMNO];
+                            response.data = [data.NO_ALUMNO, data.NOMBRE_ALUMNO];
                             res.status(200).send(response);
                         } 
                     }
