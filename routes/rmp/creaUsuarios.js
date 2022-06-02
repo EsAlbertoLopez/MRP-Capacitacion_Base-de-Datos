@@ -17,13 +17,14 @@ module.exports = {
             data: []
         }
 
+        let id = parseInt(Date.now()).toString()
         let nombre = req.body.nombre
         let correo = req.body.correo
         let password = req.body.password
 
         password = md5(password, 'KEYMRPSUPERSECRETA');  
 
-        let query = `INSERT INTO PROFESORES (NOMBRE_PROFESOR, CORREO, PASSWORD)
+        let query = `INSERT INTO PROFESORES (NO_PROFESOR, NOMBRE_PROFESOR, CORREO, PASSWORD)
                     VALUES ?`
 
 
@@ -35,6 +36,7 @@ module.exports = {
         } else {
             let inserta = []
             inserta.push([
+                id,
                 nombre,
                 correo,
                 password
@@ -63,13 +65,14 @@ module.exports = {
             data: []
         }
 
+        let id = parseInt(Date.now()).toString()
         let nombre = req.body.nombre
         let correo = req.body.correo
         let password = req.body.password
 
         password = md5(password, 'KEYMRPSUPERSECRETA');  
 
-        let query = `INSERT INTO ALUMNOS (NOMBRE_ALUMNO, CORREO, PASSWORD)
+        let query = `INSERT INTO ALUMNOS (NO_ALUMNO, NOMBRE_ALUMNO, CORREO, PASSWORD)
                     VALUES ?`
 
         if(!f.definido(nombre) || !f.definido(correo) || !f.definido(password)) {
@@ -80,6 +83,7 @@ module.exports = {
         } else {
             let inserta = []
             inserta.push([
+                id,
                 nombre,
                 correo,
                 password
