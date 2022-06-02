@@ -54,6 +54,7 @@ module.exports = {
         let idMateria = req.body.idMateria
         let materia = req.body.materia
         let profe = req.body.profe
+        let idProfe = req.body.idProfe
         let dificultad = req.body.dificultad
         let cobro = parseInt(req.body.cobro) === 1 ? true : false
         let formatoExamen = req.files.formatoExamen
@@ -79,7 +80,7 @@ module.exports = {
         } 
 
 
-        if(!f.definido(nombreExamen) || !f.definido(materia) || !f.definido(idMateria) || !f.definido(profe) || !f.definido(formatoExamen) || !f.definido(preguntas) || !f.definido(dificultad) || !f.definido(cobro) || !f.definido(descripcion)) {
+        if(!f.definido(nombreExamen) || !f.definido(materia) || !f.definido(idMateria) || !f.definido(profe) || !f.definido(formatoExamen) || !f.definido(preguntas) || !f.definido(dificultad) || !f.definido(cobro) || !f.definido(descripcion) || !f.definido(idProfe)) {
             response.replyCode = 500;
             response.replyText = 'Error en la solicitud de datos';
             response.data = undefined;
@@ -93,6 +94,7 @@ module.exports = {
                 materia: materia,
                 profe: profe,
                 cobro: cobro,
+                idProfe: idProfe,
                 dificultad: dificultad,
                 noPreguntas: preguntas.length,
                 preguntas: preguntas
