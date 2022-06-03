@@ -157,7 +157,7 @@ module.exports = {
         let idExamen = req.body.idExamen.toString()
         let idProfesor = req.body.idProfesor.toString()
 
-        if(!f.definido(idExamen) || !f.definido(idProfe)) {
+        if(!f.definido(idExamen) || !f.definido(idProfesor)) {
             response.replyCode = 500;
             response.replyText = 'Error en la solicitud de datos';
             response.data = undefined;
