@@ -97,7 +97,7 @@ module.exports = {
         let idMaestro = req.params.idMaestro.toString()
         let re = new RegExp(`/${idMaestro}/`, "i");
 
-        if(!f.definido(palabra)) {
+        if(!f.definido(idMaestro)) {
             response.replyCode = 500;
             response.replyText = 'Error en la solicitud de datos';
             response.data = undefined;
