@@ -26,30 +26,30 @@ module.exports = {
                     WHERE CORREO = "${correo}"`
 
         if(!f.definido(pass) || !f.definido(correo)) {
-            response.replyCode = 500;
+            response.replyCode = 400;
             response.replyText = 'Ocurrió algo inesperado';
             response.data = undefined;
-            res.status(500).send(response);
+            res.status(400).send(response);
         } else {
             dbMrp.query(query, (err, data) => {
                 if(err) {
                     console.log(err)
-                    response.replyCode = 500;
+                    response.replyCode = 400;
                     response.replyText = 'Ocurrió algo inesperado';
                     response.data = undefined;
-                    res.status(500).send(response);
+                    res.status(400).send(response);
                 } else {
                     if(data.length === 0) {
-                        response.replyCode = 500;
+                        response.replyCode = 400;
                         response.replyText = 'Ocurrió algo inesperado';
                         response.data = undefined;
-                        res.status(500).send(response);
+                        res.status(400).send(response);
                     } else {
                         if(data[0].PASSWORD !== pass) {
-                            response.replyCode = 500;
+                            response.replyCode = 400;
                             response.replyText = `Usuario incorrecto`;
                             response.data = [];
-                            res.status(500).send(response);  
+                            res.status(400).send(response);  
                         } else {
                             response.replyCode = 200;
                             response.replyText = `Ok`;
@@ -79,30 +79,30 @@ module.exports = {
                     WHERE CORREO = "${correo}"`
 
         if(!f.definido(pass) || !f.definido(correo)) {
-            response.replyCode = 500;
+            response.replyCode = 400;
             response.replyText = 'Ocurrió algo inesperado';
             response.data = undefined;
-            res.status(500).send(response);
+            res.status(400).send(response);
         } else {
             dbMrp.query(query, (err, data) => {
                 if(err) {
                     console.log(err)
-                    response.replyCode = 500;
+                    response.replyCode = 400;
                     response.replyText = 'Ocurrió algo inesperado';
                     response.data = undefined;
-                    res.status(500).send(response);
+                    res.status(400).send(response);
                 } else {
                     if(data.length === 0) {
-                        response.replyCode = 500;
+                        response.replyCode = 400;
                         response.replyText = 'Ocurrió algo inesperado';
                         response.data = undefined;
-                        res.status(500).send(response);
+                        res.status(400).send(response);
                     } else {
                         if(data[0].PASSWORD !== pass) {
-                            response.replyCode = 500;
+                            response.replyCode = 400;
                             response.replyText = `Usuario incorrecto`;
                             response.data = [];
-                            res.status(500).send(response);  
+                            res.status(400).send(response);  
                         } else {
                             response.replyCode = 200;
                             response.replyText = `Ok`;
