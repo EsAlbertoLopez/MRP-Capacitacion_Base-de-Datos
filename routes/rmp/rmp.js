@@ -14,12 +14,13 @@ const { validaUsuarioProfesor, validaUsuarioAlumno } = require('./validaUsuario'
 const { creaAlumno, creaProfesor } = require('./creaUsuarios');
 const { cargaExamen } = require('./cargarExamen');
 const { generaToken, validaToken } = require('./generaToken');
-const { regresaExamenes, regresaExamen } = require('./regresaExamenes');
+const { regresaExamenes, regresaExamen, regresaExamenesPalabras } = require('./regresaExamenes');
 
 //Metodos
 router.get('/obtieneMaterias', obtieneMaterias);
-router.get('/regresaExamenes/:letra', regresaExamenes)
+router.get('/regresaExamenes/:letra', regresaExamenes);
 router.get('/regresaExamen/:idExamen', regresaExamen);
+router.get('/regresaExamenPalabra/:palabra', regresaExamenesPalabras);
 router.post('/validaUsuarioProfesor', validaUsuarioProfesor);
 router.post('/validaUsuarioAlumno', validaUsuarioAlumno);
 router.post('/creaProfesor', creaProfesor);

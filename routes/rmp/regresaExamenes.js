@@ -27,6 +27,10 @@ const modelo = {
     examen: mongoose.model('examenSchema', examenSchema ,'EXAMENES')
 }
 
+function capitalize(word) {
+    return word[0].toUpperCase() + word.slice(1);
+}
+
 module.exports = {
     regresaExamenes: async (req, res) => {
         let response = {
@@ -46,6 +50,35 @@ module.exports = {
         } else {
             mongoose.connect(url, async function(err, db) {
                 let examenesResultado = await modelo.examen.find({"examen.materia":{$regex: re}}, {"_id": 0, "examen.preguntas": 0}).exec()
+                response.replyCode = 200;
+                response.replyText = 'Examen recuperado con exito';
+                response.data = [examenesResultado];
+                res.status(200).send(response);
+            })
+        }
+    },
+
+    regresaExamenesPalabras: async (req, res) => {
+        let response = {
+            replyCode: 200,
+            replyText: "Token generado",
+            data: []
+        }
+
+        let palabra = req.params.palabra.toString()
+        let palabraMayuscula = palabra.toUpperCase()
+        let palabraMinuscula = palabra.toLowerCase()
+        let palabarPrimeraLetra = capitalize(palabra)
+        let re = new RegExp(`(${palabraMayuscula} | ${palabraMinuscula} | ${palabarPrimeraLetra})`);
+
+        if(!f.definido(letra)) {
+            response.replyCode = 500;
+            response.replyText = 'Error en la solicitud de datos';
+            response.data = undefined;
+            res.status(500).send(response);
+        } else {
+            mongoose.connect(url, async function(err, db) {
+                let examenesResultado = await modelo.examen.find({"examen.nombreExamen":{$regex: re}}, {"_id": 0, "examen.preguntas": 0}).exec()
                 response.replyCode = 200;
                 response.replyText = 'Examen recuperado con exito';
                 response.data = [examenesResultado];
