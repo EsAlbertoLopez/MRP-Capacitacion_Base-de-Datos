@@ -145,5 +145,41 @@ module.exports = {
                 });
             })
         }
+    },
+
+    borrarExamen: async (req, res) => {
+        let response = {
+            replyCode: 200,
+            replyText: "Token generado",
+            data: []
+        }
+
+        let idExamen = req.body.idExamen.toString()
+        let idProfesor = req.body.idProfesor.toString()
+
+        if(!f.definido(idExamen) || !f.definido(idProfe)) {
+            response.replyCode = 500;
+            response.replyText = 'Error en la solicitud de datos';
+            response.data = undefined;
+            res.status(500).send(response);
+        } else {
+            mongoose.connect(url, function(err, db) {
+                db.collection("EXAMENES").remove({"examen.id": idExamen, "examen.idProfe": idProfesor}, function(err, result) {
+                    if(err) {
+                        db.close();
+                        response.replyCode = 500;
+                        response.replyText = 'Error en la solicitud de datos';
+                        response.data = undefined;
+                        res.status(500).send(response);
+                    } else {
+                        db.close();
+                        response.replyCode = 200;
+                        response.replyText = 'Examen recuperado con exito';
+                        response.data = [result];
+                        res.status(200).send(response);
+                    }
+                });
+            })
+        }
     }
 }

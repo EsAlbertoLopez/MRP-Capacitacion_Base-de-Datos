@@ -14,7 +14,7 @@ const { validaUsuarioProfesor, validaUsuarioAlumno } = require('./validaUsuario'
 const { creaAlumno, creaProfesor } = require('./creaUsuarios');
 const { cargaExamen } = require('./cargarExamen');
 const { generaToken, validaToken } = require('./generaToken');
-const { regresaExamenes, regresaExamen, regresaExamenesPalabras, regresaExamenesMaestro } = require('./regresaExamenes');
+const { regresaExamenes, regresaExamen, regresaExamenesPalabras, regresaExamenesMaestro, borrarExamen } = require('./regresaExamenes');
 
 //Metodos
 router.get('/obtieneMaterias', obtieneMaterias);
@@ -23,6 +23,7 @@ router.get('/regresaExamen/:idExamen', regresaExamen);
 router.get('/regresaExamenPalabra/:palabra', regresaExamenesPalabras);
 router.get('/regresaExamenMaestro/:idMaestro', regresaExamenesMaestro);
 router.post('/validaUsuarioProfesor', validaUsuarioProfesor);
+router.post('/borraExamen', borrarExamen);
 router.post('/validaUsuarioAlumno', validaUsuarioAlumno);
 router.post('/creaProfesor', creaProfesor);
 router.post('/creaAlumno', creaAlumno);
