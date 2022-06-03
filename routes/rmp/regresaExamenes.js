@@ -95,7 +95,6 @@ module.exports = {
         }
 
         let idMaestro = req.params.idMaestro.toString()
-        let re = new RegExp(`/${idMaestro}/`, "i");
 
         if(!f.definido(idMaestro)) {
             response.replyCode = 500;
@@ -104,7 +103,7 @@ module.exports = {
             res.status(500).send(response);
         } else {
             mongoose.connect(url, async function(err, db) {
-                let examenesResultado = await modelo.examen.find({"examen.idProfe":{$regex: re}}, {"_id": 0, "examen.preguntas": 0}).exec()
+                let examenesResultado = await modelo.examen.find({"examen.idProfe": idProfe}, {"_id": 0, "examen.preguntas": 0}).exec()
                 response.replyCode = 200;
                 response.replyText = 'Examen recuperado con exito';
                 response.data = [examenesResultado];
