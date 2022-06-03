@@ -71,7 +71,7 @@ module.exports = {
         let palabarPrimeraLetra = capitalize(palabra)
         let re = new RegExp(`(${palabraMayuscula} | ${palabraMinuscula} | ${palabarPrimeraLetra})`);
 
-        if(!f.definido(letra)) {
+        if(!f.definido(palabra)) {
             response.replyCode = 500;
             response.replyText = 'Error en la solicitud de datos';
             response.data = undefined;
