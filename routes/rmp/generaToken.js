@@ -241,19 +241,10 @@ module.exports = {
                             response.data = undefined;
                             res.status(500).send(response);
                         } else {
-                            dbMrp.query(queryTokenBorrarToken, async (err, data3) => {
-                                if(err) {
-                                    response.replyCode = 500;
-                                    response.replyText = 'Código incorrecto';
-                                    response.data = undefined;
-                                    res.status(500).send(response);
-                                } else {
-                                    response.replyCode = 200;
-                                    response.replyText = 'Validado con exito';
-                                    response.data = [];
-                                    res.status(200).send(response);
-                                }
-                            })
+                            response.replyCode = 200;
+                            response.replyText = 'Validado con exito';
+                            response.data = [];
+                            res.status(200).send(response);
                         }
                     })
                 } else {
