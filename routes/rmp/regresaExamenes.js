@@ -62,7 +62,7 @@ module.exports = {
         }
 
         let palabra = req.params.palabra.toString()
-        let re = new RegExp(`/${palabra}/ig`);
+        let re = new RegExp(`${palabra}/ig`);
 
         if(!f.definido(palabra)) {
             response.replyCode = 500;
