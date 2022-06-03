@@ -69,7 +69,7 @@ module.exports = {
         let palabraMayuscula = palabra.toUpperCase()
         let palabraMinuscula = palabra.toLowerCase()
         let palabraPrimeraLetra = capitalize(palabra)
-        let re = new RegExp(`/${palabraMayuscula}|${palabraMinuscula}|${palabraPrimeraLetra}/gi`);
+        let re = new RegExp(`/${palabraMayuscula}|${palabraMinuscula}|${palabraPrimeraLetra}/ig`);
 
         if(!f.definido(palabra)) {
             response.replyCode = 500;
