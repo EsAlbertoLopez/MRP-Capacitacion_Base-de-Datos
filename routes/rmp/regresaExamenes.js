@@ -27,10 +27,6 @@ const modelo = {
     examen: mongoose.model('examenSchema', examenSchema ,'EXAMENES')
 }
 
-function capitalize(word) {
-    return word[0].toUpperCase() + word.slice(1);
-}
-
 module.exports = {
     regresaExamenes: async (req, res) => {
         let response = {
@@ -66,10 +62,7 @@ module.exports = {
         }
 
         let palabra = req.params.palabra.toString()
-        let palabraMayuscula = palabra.toUpperCase()
-        let palabraMinuscula = palabra.toLowerCase()
-        let palabraPrimeraLetra = capitalize(palabra)
-        let re = new RegExp(`/${palabraMayuscula}|${palabraMinuscula}|${palabraPrimeraLetra}/gi`);
+        let re = new RegExp(`/${palabra}/i`);
 
         if(!f.definido(palabra)) {
             response.replyCode = 500;
