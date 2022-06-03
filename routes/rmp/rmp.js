@@ -13,7 +13,7 @@ const { obtieneMaterias } = require('./formulario');
 const { validaUsuarioProfesor, validaUsuarioAlumno } = require('./validaUsuario');
 const { creaAlumno, creaProfesor } = require('./creaUsuarios');
 const { cargaExamen } = require('./cargarExamen');
-const { generaToken, validaToken } = require('./generaToken');
+const { generaToken, validaToken, generaTokenVip, validaTokenVip } = require('./generaToken');
 const { regresaExamenes, regresaExamen, regresaExamenesPalabras, regresaExamenesMaestro, borrarExamen } = require('./regresaExamenes');
 
 //Metodos
@@ -29,7 +29,9 @@ router.post('/creaProfesor', creaProfesor);
 router.post('/creaAlumno', creaAlumno);
 router.post('/cargaExamen', cargaExamen);
 router.post('/generaToken', generaToken);
+router.post('/generaTokenVip', generaTokenVip);
 router.post('/validaToken', validaToken);
+router.post('/validaTokenVip', validaTokenVip);
 
 
 
