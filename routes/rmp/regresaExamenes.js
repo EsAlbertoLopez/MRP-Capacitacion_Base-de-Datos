@@ -68,8 +68,8 @@ module.exports = {
         let palabra = req.params.palabra.toString()
         let palabraMayuscula = palabra.toUpperCase()
         let palabraMinuscula = palabra.toLowerCase()
-        let palabarPrimeraLetra = capitalize(palabra)
-        let re = new RegExp(`/(${palabraMayuscula} | ${palabraMinuscula} | ${palabarPrimeraLetra})/gm`);
+        let palabraPrimeraLetra = capitalize(palabra)
+        let re = new RegExp(`(${palabraMayuscula} | ${palabraMinuscula} | ${palabraPrimeraLetra})`);
 
         if(!f.definido(palabra)) {
             response.replyCode = 500;
