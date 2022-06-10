@@ -9,16 +9,11 @@ var dbMrp = require('../../conexiones/dbMigration').of('mrp')
 var f = require('../../funciones')
 var nodemailer = require('nodemailer')
 
-var transporter = nodemailer.createTransport({
-    host: "smtp-mail.outlook.com",
-    secureConnection: false, 
-    port: 587, 
-    tls: {
-       ciphers:'SSLv3'
-    },
+var transporter = nodemailer.createTransport("SMTP", {
+    service: "hotmail",
     auth: {
-        user: 'mrp.no-reply@outlook.com',
-        pass: '@cuentamail123'
+        user: "mrp.token.not.reply@hotmail.com",
+        pass: "@password10"
     }
 });
 
