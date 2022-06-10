@@ -19,38 +19,42 @@ var transporter = nodemailer.createTransport({
 });
 
 async function recuperaCorreoProfesor(idProfe) {
-    let query = `SELECT *
+    return new Promise(resolve => {
+        let query = `SELECT *
                 FROM PROFESORES
                 WHERE NO_PROFESOR = "${idProfe}"`
 
-    dbMrp.query(query, async (err, data2) => {
-        if(err) {
-            console.log(err)
-            response.replyCode = 500;
-            response.replyText = 'Error en la solicitud de datos';
-            response.data = undefined;
-            res.status(500).send(response);
-        } else {
-            resolve(data2)
-        }
+        dbMrp.query(query, async (err, data2) => {
+            if(err) {
+                console.log(err)
+                response.replyCode = 500;
+                response.replyText = 'Error en la solicitud de datos';
+                response.data = undefined;
+                res.status(500).send(response);
+            } else {
+                resolve(data2)
+            }
+        })
     })
 }
 
 async function recuperaCorreoAlumno(idAlumno) {
-    let query = `SELECT *
+    return new Promise(resolve => {
+        let query = `SELECT *
                 FROM ALUMNOS
                 WHERE NO_ALUMNO = "${idAlumno}"`
 
-    dbMrp.query(query, async (err, data2) => {
-        if(err) {
-            console.log(err)
-            response.replyCode = 500;
-            response.replyText = 'Error en la solicitud de datos';
-            response.data = undefined;
-            res.status(500).send(response);
-        } else {
-            resolve(data2)
-        }
+        dbMrp.query(query, async (err, data2) => {
+            if(err) {
+                console.log(err)
+                response.replyCode = 500;
+                response.replyText = 'Error en la solicitud de datos';
+                response.data = undefined;
+                res.status(500).send(response);
+            } else {
+                resolve(data2)
+            }
+        })
     })
 }
 
