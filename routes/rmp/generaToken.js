@@ -10,12 +10,15 @@ var f = require('../../funciones')
 var nodemailer = require('nodemailer')
 
 var transporter = nodemailer.createTransport({
-    service: "gmail",
-    secure: false,
+    host: "smtp-mail.outlook.com",
+    secureConnection: false, 
+    port: 587, 
+    tls: {
+       ciphers:'SSLv3'
+    },
     auth: {
-        type: "login",
-        user: "mrppruebaservidor@gmail.com",
-        pass: "@mrp052022"
+        user: 'mrp.no-reply@outlook.com',
+        pass: '@cuentamail123'
     }
 });
 
