@@ -22,7 +22,7 @@ router.get('/regresaExamenes/:letra', regresaExamenes);
 router.get('/regresaExamen/:idExamen', regresaExamen);
 router.get('/regresaExamenPalabra/:palabra', regresaExamenesPalabras);
 router.get('/regresaExamenMaestro/:idMaestro', regresaExamenesMaestro);
-router.get('recuperaExamenMuestra', regresaExamenesMuestra)
+router.get('/recuperaExamenMuestra', regresaExamenesMuestra)
 router.post('/validaUsuarioProfesor', validaUsuarioProfesor);
 router.post('/borraExamen', borrarExamen);
 router.post('/validaUsuarioAlumno', validaUsuarioAlumno);
