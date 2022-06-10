@@ -172,7 +172,7 @@ module.exports = {
                                 from: 'mrppruebaservidor@gmail.com',
                                 to: datosProfesor[0].CORREO,
                                 subject: 'Solicitud de acceso',
-                                text: `Hola, se ha solicitado el acceso de parte de ${nombreAlumno}, el token es ${token} y puedes comunicarte con él al correo ${datosAlumno[0].CORREO}`
+                                text: `Hola, se ha solicitado el acceso de parte de ${datosAlumno[0].NOMBRE_ALUMNO}, el token es ${token} y puedes comunicarte con él al correo ${datosAlumno[0].CORREO}`
                             };
                             transporter.sendMail(mailOptions, function(error, info){
                                 if (error) {
