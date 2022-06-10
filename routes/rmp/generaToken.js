@@ -9,7 +9,7 @@ var dbMrp = require('../../conexiones/dbMigration').of('mrp')
 var f = require('../../funciones')
 var nodemailer = require('nodemailer')
 
-var transporter = nodemailer.createTransport("SMTP", {
+var transporter = nodemailer.createTransport({
     service: "hotmail",
     auth: {
         user: "mrp.token.not.reply@hotmail.com",
