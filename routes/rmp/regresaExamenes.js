@@ -181,5 +181,30 @@ module.exports = {
                 });
             })
         }
+    },
+    
+    regresaExamenesMuestra: async (req, res) => {
+        let response = {
+            replyCode: 200,
+            replyText: "Token generado",
+            data: []
+        }
+
+        let idMaestro = req.params.idMaestro.toString()
+
+        if(!f.definido(idMaestro)) {
+            response.replyCode = 500;
+            response.replyText = 'Error en la solicitud de datos';
+            response.data = undefined;
+            res.status(500).send(response);
+        } else {
+            mongoose.connect(url, async function(err, db) {
+                let examenesResultado = await modelo.examen.find({"examen.cobro": false}, {"_id": 0, "examen.preguntas": 0}, {limit: 3}).exec()
+                response.replyCode = 200;
+                response.replyText = 'Examen recuperado con exito';
+                response.data = [examenesResultado];
+                res.status(200).send(response);
+            })
+        }
     }
 }
