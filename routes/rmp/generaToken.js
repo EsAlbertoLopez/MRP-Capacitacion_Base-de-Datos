@@ -10,10 +10,10 @@ var f = require('../../funciones')
 var nodemailer = require('nodemailer')
 
 var transporter = nodemailer.createTransport({
-    service: "hotmail",
+    service: 'yahoo',
     auth: {
-        user: "mrp.token.not.reply@hotmail.com",
-        pass: "@password10"
+        user: 'mrpmail877@yahoo.com',
+        pass: '@Password01mrpmail'
     }
 });
 
