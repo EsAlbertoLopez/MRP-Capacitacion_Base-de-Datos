@@ -31,7 +31,7 @@ async function recuperaCorreoProfesor(idProfe) {
             response.data = undefined;
             res.status(500).send(response);
         } else {
-            return data2
+            resolve(data2)
         }
     })
 }
@@ -49,7 +49,7 @@ async function recuperaCorreoAlumno(idAlumno) {
             response.data = undefined;
             res.status(500).send(response);
         } else {
-            return data2
+            resolve(data2)
         }
     })
 }
@@ -135,8 +135,6 @@ module.exports = {
 
         let datosAlumno = await recuperaCorreoAlumno(idAlumno)
         let datosProfesor = await recuperaCorreoProfesor(idProfesor)
-        console.log(datosAlumno)
-        console.log(datosProfesor)
 
         let queryToken = `SELECT CORREO
                         FROM ALUMNOS
@@ -168,7 +166,7 @@ module.exports = {
                         } else {
                             var mailOptions = {
                                 from: 'mrppruebaservidor@gmail.com',
-                                to: datosProfesor.CORREO,
+                                to: datosProfesor[0].CORREO,
                                 subject: 'Solicitud de acceso',
                                 text: `Hola, se ha solicitado el acceso de parte de ${nombreAlumno}, el token es ${token} y puedes comunicarte con él al correo ${datosAlumno[0].CORREO}`
                             };
@@ -182,9 +180,9 @@ module.exports = {
                                 } else {
                                     var mailOptions = {
                                         from: 'mrppruebaservidor@gmail.com',
-                                        to: datosAlumno.CORREO,
+                                        to: datosAlumno[0].CORREO,
                                         subject: 'Solicitud de acceso',
-                                        text: `Hola, se ha solicitado el acceso, puedes comunicarte con él profesor al correo ${datosProfesor.CORREO}`
+                                        text: `Hola, se ha solicitado el acceso, puedes comunicarte con él profesor al correo ${datosProfesor[0].CORREO}`
                                     };
                                     transporter.sendMail(mailOptions, function(error, info){
                                         if (error) {
