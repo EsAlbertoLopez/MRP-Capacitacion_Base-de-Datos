@@ -10,7 +10,7 @@ var f = require('../../funciones')
 var nodemailer = require('nodemailer')
 
 var transporter = nodemailer.createTransport({
-    service: "mail",
+    service: "gmail",
     secure: false,
     auth: {
         type: "login",
