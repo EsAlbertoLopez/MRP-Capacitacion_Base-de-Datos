@@ -8,6 +8,7 @@
 var dbMrp = require('../../conexiones/dbMigration').of('mrp')
 var f = require('../../funciones')
 var nodemailer = require('nodemailer')
+var mongoose = require('mongoose');
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -16,6 +17,42 @@ var transporter = nodemailer.createTransport({
         pass: 'udjlnbbavqbaquwr'
     }
 });
+
+async function recuperaCorreoProfesor(idProfe) {
+    let query = `SELECT *
+                FROM PROFESORES
+                WHERE NO_PROFESOR = "${idProfe}"`
+
+    dbMrp.query(query, async (err, data2) => {
+        if(err) {
+            console.log(err)
+            response.replyCode = 500;
+            response.replyText = 'Error en la solicitud de datos';
+            response.data = undefined;
+            res.status(500).send(response);
+        } else {
+            return data2
+        }
+    })
+}
+
+async function recuperaCorreoAlumno(idAlumno) {
+    let query = `SELECT *
+                FROM ALUMNOS
+                WHERE NO_ALUMNO = "${idAlumno}"`
+
+    dbMrp.query(query, async (err, data2) => {
+        if(err) {
+            console.log(err)
+            response.replyCode = 500;
+            response.replyText = 'Error en la solicitud de datos';
+            response.data = undefined;
+            res.status(500).send(response);
+        } else {
+            return data2
+        }
+    })
+}
 
 module.exports = {
     generaToken: async (req, res) => {
@@ -93,7 +130,11 @@ module.exports = {
 
         let idAlumno = req.body.idAlumno.toString()
         let idExamen = req.body.idExamen.toString()
+        let idProfesor = req.body.idProfesor.toString()
         let token = Math.floor(Math.random() * (99999999 - 10000000 + 1)) + 10000000;
+
+        let datosAlumno = await recuperaCorreoAlumno(idAlumno)
+        let datosProfesor = await recuperaCorreoProfesor(idProfesor)
 
         let queryToken = `SELECT CORREO
                         FROM ALUMNOS
@@ -125,9 +166,9 @@ module.exports = {
                         } else {
                             var mailOptions = {
                                 from: 'mrppruebaservidor@gmail.com',
-                                to: data[0].CORREO,
-                                subject: 'Token de acceso',
-                                text: `Hola, tu código de acceso es ${token}`
+                                to: datosProfesor[0].CORREO,
+                                subject: 'Solicitud de acceso',
+                                text: `Hola, se ha solicitado el acceso de parte de ${nombreAlumno}, el token es ${token} y puedes comunicarte con él al correo ${datosAlumno[0].CORREO}`
                             };
                             transporter.sendMail(mailOptions, function(error, info){
                                 if (error) {
@@ -137,10 +178,26 @@ module.exports = {
                                     response.data = undefined;
                                     res.status(500).send(response);
                                 } else {
-                                    response.replyCode = 200;
-                                    response.replyText = 'Correo enviado con exito';
-                                    response.data = [data];
-                                    res.status(200).send(response);
+                                    var mailOptions = {
+                                        from: 'mrppruebaservidor@gmail.com',
+                                        to: datosAlumno[0].CORREO,
+                                        subject: 'Solicitud de acceso',
+                                        text: `Hola, se ha solicitado el acceso, puedes comunicarte con él profesor al correo ${datosProfesor[0].CORREO}`
+                                    };
+                                    transporter.sendMail(mailOptions, function(error, info){
+                                        if (error) {
+                                            console.log(error)
+                                            response.replyCode = 500;
+                                            response.replyText = 'El correo no pudo ser enviado';
+                                            response.data = undefined;
+                                            res.status(500).send(response);
+                                        } else {
+                                            response.replyCode = 200;
+                                            response.replyText = 'Correos enviado con exito';
+                                            response.data = [data];
+                                            res.status(200).send(response);
+                                        }
+                                    });
                                 }
                             });
                         }
