@@ -135,6 +135,8 @@ module.exports = {
 
         let datosAlumno = await recuperaCorreoAlumno(idAlumno)
         let datosProfesor = await recuperaCorreoProfesor(idProfesor)
+        console.log(datosAlumno)
+        console.log(datosProfesor)
 
         let queryToken = `SELECT CORREO
                         FROM ALUMNOS
@@ -166,7 +168,7 @@ module.exports = {
                         } else {
                             var mailOptions = {
                                 from: 'mrppruebaservidor@gmail.com',
-                                to: datosProfesor[0].CORREO,
+                                to: datosProfesor.CORREO,
                                 subject: 'Solicitud de acceso',
                                 text: `Hola, se ha solicitado el acceso de parte de ${nombreAlumno}, el token es ${token} y puedes comunicarte con él al correo ${datosAlumno[0].CORREO}`
                             };
@@ -180,9 +182,9 @@ module.exports = {
                                 } else {
                                     var mailOptions = {
                                         from: 'mrppruebaservidor@gmail.com',
-                                        to: datosAlumno[0].CORREO,
+                                        to: datosAlumno.CORREO,
                                         subject: 'Solicitud de acceso',
-                                        text: `Hola, se ha solicitado el acceso, puedes comunicarte con él profesor al correo ${datosProfesor[0].CORREO}`
+                                        text: `Hola, se ha solicitado el acceso, puedes comunicarte con él profesor al correo ${datosProfesor.CORREO}`
                                     };
                                     transporter.sendMail(mailOptions, function(error, info){
                                         if (error) {
